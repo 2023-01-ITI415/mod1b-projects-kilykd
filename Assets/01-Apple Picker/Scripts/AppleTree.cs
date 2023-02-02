@@ -38,4 +38,12 @@ public class AppleTree : MonoBehaviour
            speed = -Mathf.Abs(speed); // Move left
        }
     }
+	
+	void FixedUpdate(){
+		
+		//Changing Direction Randomly is now average 1 time per second (with chanceToChangeDirection = .02)
+		if ( Random.value < chanceToChangeDirection){
+            speed *= -1; // Change direction
+	   }	
+	}
 }
