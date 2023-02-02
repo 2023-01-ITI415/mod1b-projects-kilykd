@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
  public class ApplePicker : MonoBehaviour {
      [Header("Set in Inspector")]                              
@@ -17,4 +18,14 @@ using UnityEngine;
              tBasketGO.transform.position = pos;
          }
      }
+	  
+	  public void AppleDestroyed()
+	  {
+		  //Destroy all of the falling apples
+		  GameObject[] tAppleArray=GameObject.FindGameObjectsWithTag("Apple");
+		  foreach (GameObject tGO in tAppleArray){
+			  Destroy(tGO);
+		  }
+	  }
+	 
  }

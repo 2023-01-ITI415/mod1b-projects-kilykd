@@ -144,7 +144,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -160,11 +160,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec1ee8a0d1c2874294c2d273319f454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applePrefab: {fileID: 0}
-  speed: 1
-  leftAndRightEdge: 10
-  chanceToChangeDirection: 0
-  secondsBetweenAppleDrop: 0
+  applePrefab: {fileID: 1792797487905916371, guid: 1fa14a84c1af97c4aa39de74171d4bce, type: 3}
+  speed: 10
+  leftAndRightEdge: 20
+  chanceToChangeDirection: 0.02
+  secondsBetweenAppleDrop: 1
 --- !u!1 &5727024095668452913
 GameObject:
   m_ObjectHideFlags: 0
