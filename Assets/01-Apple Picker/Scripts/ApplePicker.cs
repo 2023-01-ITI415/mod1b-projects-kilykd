@@ -34,7 +34,7 @@ using UnityEngine.SceneManagement;
 		  
 		  //Destroy one of the baskets
 		  //Get the index of the last Basket in basketList
-		  int basketIndex = basketList.Count-1;
+		  int basketIndex = 0;
 		  
 		  //Get a reference to that Basket GameObject
 		  GameObject tBasketGO = basketList[basketIndex];
@@ -42,6 +42,7 @@ using UnityEngine.SceneManagement;
 		  //Remove the Basket from the list and destroy the GameObject
 		  basketList.RemoveAt(basketIndex);
 		  Destroy(tBasketGO);
+		  basketIndex++;
 		  
 		  //If there are no Baskets left, restart game
 		  if(basketList.Count == 0)

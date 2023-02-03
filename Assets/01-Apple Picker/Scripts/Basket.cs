@@ -50,7 +50,7 @@ public class Basket : MonoBehaviour
 			 
 			 //Parse the text of scoreGT
 			 int score = int.Parse(scoreGT.text);
-			 
+
 			 //Add points for catching the apple
 			 score += 100;
 			 
@@ -62,6 +62,7 @@ public class Basket : MonoBehaviour
 			 {
 				 HighScore.score = score;
 			 }
+
          }
      }
 }
