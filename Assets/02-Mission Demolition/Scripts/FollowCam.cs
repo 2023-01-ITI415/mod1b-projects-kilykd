@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class FollowCam : MonoBehaviour
 {
-     static public GameObject POI; // The static point of interest     
+    static public GameObject POI; // The static point of interest     
 
-	 [Header("Inscribed")]
-	 public float easing = 0.05f;
-	 public Vector2 minXY = Vector2.zero; //Vector2.zero is [0,0]
+	[Header("Inscribed")]
+	public float easing = 0.05f;
+	public Vector2 minXY = Vector2.zero; //Vector2.zero is [0,0]
  
-     [Header("Dynamic")]
-     public float camZ; // The desired Z pos of the camera 
+    [Header("Dynamic")]
+    public float camZ; // The desired Z pos of the camera 
  
-     void Awake() {
+    void Awake() {
          camZ = this.transform.position.z;
-     }
+    }
  
-     void FixedUpdate () {
+    void FixedUpdate () {
          
 		Vector3 destination = Vector3.zero;                                  
  
@@ -41,5 +41,7 @@ public class FollowCam : MonoBehaviour
          destination.z = camZ;
          // Set the camera to the destination
          transform.position = destination;
-     }
+		 //Set the orthographicSize of the camera to keep the ground in view
+		 Camera.main.orthographicSize = destination.y + 10;
+    }
 }
