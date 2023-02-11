@@ -73,6 +73,9 @@ public class FollowCam : MonoBehaviour
     public void SwitchView() {                                                  // i
         SwitchView( eView.none );
     }
+	static public void SWITCH_VIEW( eView newView ) {                           // j
+        S.SwitchView( newView );
+    }
 }
 
 
