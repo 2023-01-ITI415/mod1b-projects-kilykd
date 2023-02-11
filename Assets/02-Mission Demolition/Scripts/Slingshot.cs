@@ -67,15 +67,17 @@ public class Slingshot : MonoBehaviour {
  
          if ( Input.GetMouseButtonUp(0) ) { // This 0 is a zero, not an o      
              // The mouse has been released
-             aimingMode = false;
-             Rigidbody projRB = projectile.GetComponent<Rigidbody>();
-             projRB.isKinematic = false;                                       
-             projRB.collisionDetectionMode = CollisionDetectionMode.Continuous;
-             projRB.velocity = -mouseDelta * velocityMult;
-			 FollowCam.POI = projectile; //Set the _maincamera POI
-			 //Add a ProjectileLine to the Projectile
-			 Instantiate<GameObject>(projLinePrefab, projectile.transform);
-             projectile = null;                                                
+            aimingMode = false;
+            Rigidbody projRB = projectile.GetComponent<Rigidbody>();
+            projRB.isKinematic = false;                                       
+            projRB.collisionDetectionMode = CollisionDetectionMode.Continuous;
+            projRB.velocity = -mouseDelta * velocityMult;
+			FollowCam.POI = projectile; //Set the _maincamera POI
+			//Add a ProjectileLine to the Projectile
+			Instantiate<GameObject>(projLinePrefab, projectile.transform);
+            projectile = null;
+			MissionDemolition.SHOT_FIRED();
+			 
          }
 	 }
  }
