@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 	public class PlayerController : MonoBehaviour {
     public Vector3 jump;
+	public Vector3 moveBack;
     public float jumpForce = 2.0f;
 
     public bool isGrounded;
@@ -35,6 +36,7 @@ using UnityEngine;
 	{
 		if(other.gameObject.CompareTag("Bumper"))
 		{
+			transform.position += moveBack;
 			Debug.Log("Collision Detected");
 		}
 			

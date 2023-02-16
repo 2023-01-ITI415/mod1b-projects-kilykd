@@ -673,7 +673,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: {x: 0, y: 0, z: 0}
-  jumpForce: 2.5
+  moveBack: {x: -2.1, y: 0, z: 0}
+  jumpForce: 3
   isGrounded: 0
 --- !u!1 &1572004184
 GameObject:
