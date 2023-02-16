@@ -7,6 +7,9 @@ using UnityEngine;
     public Vector3 jump;
 	public Vector3 moveBack;
     public float jumpForce = 2.0f;
+	public float fallMultiplier = 2.5f;
+
+	Collider bumperCollider;
 
     public bool isGrounded;
     private Rigidbody rb;
@@ -24,23 +27,36 @@ using UnityEngine;
 
     void Update()
 	{
-		//If the player hits spacebar and is on the ground, jump and set isGrounded to false
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
-
+		//If the player hits spacebar and is on the ground 
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+		{
+			//jump and set isGrounded to false
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
+		//If the player releases space and is not grounded
+		if(Input.GetKeyUp(KeyCode.Space) && !isGrounded)
+		{
+			//Increase the gravity by fallMultiplier so make the player fall faster
+			rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1);
+		}
 	}
 		
 	void OnTriggerEnter(Collider other)
 	{
+		//if player collides with a bumper
 		if(other.gameObject.CompareTag("Bumper"))
 		{
+			//move the player closer to the edgge
 			transform.position += moveBack;
-			Debug.Log("Collision Detected");
+			//get a reference to the bumper that hit the player, set its collider to false
+			bumperCollider = other.gameObject.GetComponent<Collider>();
+			bumperCollider.enabled = !bumperCollider.enabled;	
+			
 		}
 			
-	}	
-   
+	}
+	
+	
 }
 
