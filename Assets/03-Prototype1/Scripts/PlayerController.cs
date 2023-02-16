@@ -6,24 +6,31 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     public Vector3 jump;
     public float jumpForce = 2.0f;
+	
+	
 
     public bool isGrounded;
-    Rigidbody rb;
+    private Rigidbody rb;
 	
     void Start(){
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
     }
-
+// Checks to see if player is grounded
     void OnCollisionStay(){
-        isGrounded = true;
+        if(!isGrounded && rb.velocity.y == 0){
+		isGrounded = true;
+		}
     }
 
     void Update(){
+		//If the player hits spacebar and is on the ground, jump and set isGrounded to false
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
 
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
+		
     }
 }
+
