@@ -197,7 +197,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Hold Space to Jump
 
-    Release to Fast Fall'
+    Release to Fall'
 --- !u!222 &229301376
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f7db9570a0fa14ba9d0c77fd9e7dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uitInstructions: {fileID: 229301375}
+  lifetime: 3
 --- !u!1 &238039079
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bumperPrefab: {fileID: 5232316972650704243, guid: 2b3dcc46fc3d77f44bb732b5e2dfcbe9, type: 3}
   bumperLaunchDelay: 1
+  myBumper: {fileID: -7449352890267346054, guid: 2b3dcc46fc3d77f44bb732b5e2dfcbe9, type: 3}
 --- !u!4 &253880233
 Transform:
   m_ObjectHideFlags: 0
@@ -997,7 +998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jump: {x: 0, y: 0, z: 0}
   moveBack: {x: -2.1, y: 0, z: 0}
-  jumpForce: 2.8
+  jumpForce: 3
   fallMultiplier: 2
   isGrounded: 0
 --- !u!1 &1544024428

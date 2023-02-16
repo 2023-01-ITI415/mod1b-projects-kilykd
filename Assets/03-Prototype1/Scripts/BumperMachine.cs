@@ -7,17 +7,20 @@ public class BumperMachine : MonoBehaviour
 	[Header("Inscribed")]
 	//Prefab for instantiating bumpers
 	public GameObject bumperPrefab;
-	
-	private int bumpersLaunched = 0;
+	//int to count how many bumpers have been launched
+	//private int bumpersLaunched = 0;
 	
 	//Seconds between bumper instantiations 
-	public float bumperLaunchDelay = 1f;
+	public float bumperLaunchDelay;
 	
+	//reference to prefab to speed can be changed
 	public Bumper myBumper;
     
     void Start()
 	{
         //Start launching bumpers
+		myBumper.speed = 10f;
+		bumperLaunchDelay = 1f;
 		Invoke("LaunchBumper", 2f);
 		
     }
@@ -26,17 +29,16 @@ public class BumperMachine : MonoBehaviour
 	{
 		GameObject bumper = Instantiate<GameObject>(bumperPrefab);
 		bumper.transform.position = transform.position;
-		bumpersLaunched++;
+		
+	/*	bumpersLaunched++;
 
 		if(bumpersLaunched == 9)
 		{
 			bumperLaunchDelay -= .5f;
-			myBumper.speed *= 1.5f;
+			myBumper.speed += 3f;
 		}
-		
+	*/	
 		Invoke("LaunchBumper", bumperLaunchDelay);
 	}
-
-
-   
+	
 }
