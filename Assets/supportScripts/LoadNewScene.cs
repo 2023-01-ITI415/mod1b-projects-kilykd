@@ -20,7 +20,9 @@ public class LoadNewScene : MonoBehaviour
     {
         SceneManager.LoadScene("Main-Prototype 1");
     }
-
-    
-
+	
+	public void LoadScene4()
+	{
+		SceneManager.LoadScene("SceneMain");
+	}
 }
