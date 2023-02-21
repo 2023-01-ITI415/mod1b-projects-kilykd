@@ -9,6 +9,7 @@ using UnityEngine;
     public float jumpForce = 2.0f;
 	public float fallMultiplier = 2.5f;
 
+
 	Collider bumperCollider;
 
     public bool isGrounded;
@@ -34,8 +35,9 @@ using UnityEngine;
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
+		
 		//If the player releases space and is not grounded
-		if(Input.GetKeyUp(KeyCode.Space) && !isGrounded)
+		if(!isGrounded && transform.position.y > 7)
 		{
 			//Increase the gravity by fallMultiplier so make the player fall faster
 			rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1);
@@ -52,7 +54,7 @@ using UnityEngine;
 			//get a reference to the bumper that hit the player, set its collider to false
 			bumperCollider = other.gameObject.GetComponent<Collider>();
 			bumperCollider.enabled = !bumperCollider.enabled;	
-			
+			 
 		}
 			
 	}
