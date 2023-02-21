@@ -37,7 +37,7 @@ using UnityEngine;
         }
 		
 		//If the player releases space and is not grounded
-		if(!isGrounded && transform.position.y > 7)
+		if(Input.GetKeyUp(KeyCode.Space) && !isGrounded)
 		{
 			//Increase the gravity by fallMultiplier so make the player fall faster
 			rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1);

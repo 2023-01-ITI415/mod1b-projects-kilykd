@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BumperMachine : MonoBehaviour
 {
@@ -8,7 +10,13 @@ public class BumperMachine : MonoBehaviour
 	//Prefab for instantiating bumpers
 	public GameObject singleBumper;
 	public GameObject doubleBumper;
-	public GameObject tripleBumper;
+	
+	//reference to bumper counter class
+	public BumperCounter bumperCounter;
+
+	//reference to wintext class
+	public WinText youWin;
+
 	//int to count how many bumpers have been launched
 	public int bumpersLaunched;
 	
@@ -27,6 +35,12 @@ public class BumperMachine : MonoBehaviour
 		myBumper.speed = 10f;
 		bumperLaunchDelay = 1f;
 		timeBetweenLevels = 7f;
+
+		//Find gameobject named bumpercounter 
+		GameObject bumpersleftGO = GameObject.Find("BumperCounter");
+		//get the script component of bumpersleftGO
+		bumperCounter = bumpersleftGO.GetComponent<BumperCounter>();
+		bumperCounter.bumpersLeft = 10;
 		
 		//start level one
 		Invoke("LevelOne", 2f);
@@ -39,6 +53,7 @@ public class BumperMachine : MonoBehaviour
 		GameObject bumper = Instantiate<GameObject>(singleBumper);
 		bumper.transform.position = transform.position;
 		bumpersLaunched++;
+		bumperCounter.bumpersLeft--;
 		
 		//if 10 bumpers have been launched
 		if(bumpersLaunched == 10)
@@ -46,6 +61,7 @@ public class BumperMachine : MonoBehaviour
 			myBumper.speed = 12f;
 			myDblBumper.speed = 12f;
 			bumperLaunchDelay = .8f;
+			bumperCounter.bumpersLeft = 20;
 			//proceed to level two
 			Invoke("LevelTwo", timeBetweenLevels);
 		}
@@ -65,19 +81,22 @@ public class BumperMachine : MonoBehaviour
 			GameObject bumper = Instantiate<GameObject>(singleBumper);
 			bumper.transform.position = transform.position;
 			bumpersLaunched++;
+			bumperCounter.bumpersLeft--;
 		}
 		else 
 		{
 			GameObject dblBumper = Instantiate<GameObject>(doubleBumper);
 			dblBumper.transform.position = transform.position;
 			bumpersLaunched++;
+			bumperCounter.bumpersLeft--;
 		}
 
 		if(bumpersLaunched == 30)
 		{
 			
-			myBumper.speed = 12f;
-			myDblBumper.speed = 12f;
+			myBumper.speed = 14f;
+			myDblBumper.speed = 14f;
+			bumperCounter.bumpersLeft = 55;
 			//proceed to level three
 			Invoke("LevelThree", timeBetweenLevels);
 
@@ -99,40 +118,52 @@ public class BumperMachine : MonoBehaviour
 			GameObject bumper = Instantiate<GameObject>(singleBumper);
 			bumper.transform.position = transform.position;
 			bumpersLaunched++;
+			bumperCounter.bumpersLeft--;
 		}
 		else 
 		{
 			GameObject dblBumper = Instantiate<GameObject>(doubleBumper);
 			dblBumper.transform.position = transform.position;
 			bumpersLaunched++;
+			bumperCounter.bumpersLeft--;
 		}
 
 		if(bumpersLaunched == 85)
 		{
 			//Congrats you won
-			Debug.Log("You win!!");
+			Invoke("gameComplete", 4f);
 
 		}
 		else 
 		{
 			//instantiate another bumper
-			if(Random.value > .85)
+			if(Random.value > .8)
 			{
 				bumperLaunchDelay = .4f;
 				Invoke("LevelThree", bumperLaunchDelay);	
 			}
 			else if(Random.value < .6)
 			{
-				bumperLaunchDelay = .8f;
+				bumperLaunchDelay = .7f;
 			 	Invoke("LevelThree", bumperLaunchDelay);
 			}
 			else 
 			{
-				bumperLaunchDelay = .65f;
+				bumperLaunchDelay = .6f;
 				Invoke("LevelThree", bumperLaunchDelay);
 			}
 			
 		}
 	}
+
+	void gameComplete()
+	{
+		youWin.winText.enabled = true;
+		Invoke("returnToMenu", 3f);
+	}
 	
+	void returnToMenu()
+	{
+		SceneManager.LoadScene("SceneMain");
+	}
 }
